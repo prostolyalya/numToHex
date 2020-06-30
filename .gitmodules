@@ -1,0 +1,3 @@
+[submodule "LibNumToHex"]
+	path = LibNumToHex
+	url = https://github.com/prostolyalya/LibNumToHex.git
