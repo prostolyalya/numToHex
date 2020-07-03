@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdio.h>
-#include "LibNumToHex/lib.cpp"
+#include "LibNumToHex/header/lib.h"
 
 using namespace std;
 
