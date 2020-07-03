@@ -15,21 +15,21 @@ string converts()
     fread(dataC, size, size, f);
     fclose(f);
     string data = dataC;
-    int res = Lib::convertHexToDec(data);
+    int res = libConvert::convertHexToDec(data);
     delete[] dataC;
     return to_string(res);
 }
 
 int main()
 {
-    cout << converts() << endl;
-//    cout << "Input number ";
-//    int num = 0;
-//    cin >> num;
-//    string res = Lib::convertDecToHex(num);
-//    FILE *f = fopen("result", "ab+");
-//    fwrite(res.c_str(), res.length(), res.length(), f);
-//    fclose(f);
+//    cout << converts() << endl;
+    cout << "Input number ";
+    int num = 0;
+    cin >> num;
+    string res = libConvert::convertDecToHex(num);
+    FILE *f = fopen("result", "ab+");
+    fwrite(res.c_str(), res.length(), res.length(), f);
+    fclose(f);
 
     return 0;
 }
