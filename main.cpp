@@ -12,7 +12,9 @@ int main( )
     cout << "Read or write (r/w) ";
     char input;
     cin >> input;
-    if ( input == 'w' )
+    switch ( input )
+    {
+    case 'w':
     {
         cout << "Input number ";
         int num = 0;
@@ -21,10 +23,16 @@ int main( )
         FILE* f = fopen( "result", "wb" );
         fwrite( res.c_str( ), res.length( ), res.length( ), f );
         fclose( f );
+        break;
     }
-    else if ( input == 'r' )
+    case 'r':
     {
         FILE* f = fopen( "result", "rb" );
+        if ( f == NULL )
+        {
+            cout << "File not founded, close" << endl;
+            break;
+        }
         fseek( f, 0, SEEK_END );
         int size = ftell( f );
         rewind( f );
@@ -35,8 +43,12 @@ int main( )
         int res = libConvert::convertHexToDec( data );
         delete[] dataC;
         cout << res << endl;
+        break;
     }
-    else
+    default:
         cout << "Incorrect, close" << endl;
+        break;
+    }
+
     return 0;
 }
