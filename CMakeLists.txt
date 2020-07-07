@@ -6,7 +6,13 @@ project(numToHex LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(${numToHex_SOURCE_DIR}/LibNumToHex)
-include_directories(${numToHex_SOURCE_DIR}/LibNumToHex/include)
+enable_testing()
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/LibNumToHex)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LibNumToHex/include)
+
 add_executable(numToHex main.cpp)
+
 target_link_libraries(numToHex LibConvert)

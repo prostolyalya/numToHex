@@ -5,17 +5,15 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 int
 main( )
 {
-    cout << "Input number ";
-    string num = "";
-    cin >> num;
+    std::cout << "Input number ";
+    std::string num = "";
+    std::cin >> num;
 
     int res = libConvert::convertHexToDec( num );
-    string check = to_string( res );
+    std::string check = std::to_string( res );
     int size = check.length( );  // size number
     if ( size % 2 != 0 )
         size += 1;
