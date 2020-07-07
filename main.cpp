@@ -1,54 +1,30 @@
+#include <LibConvert/lib.h>
 #include <stdio.h>
 
+#include <fstream>
 #include <iostream>
 #include <string>
 
-#include "LibConvert/lib.h"
-
 using namespace std;
 
-int main( )
+int
+main( )
 {
-    cout << "Read or write (r/w) ";
-    char input;
-    cin >> input;
-    switch ( input )
-    {
-    case 'w':
-    {
-        cout << "Input number ";
-        int num = 0;
-        cin >> num;
-        string res = libConvert::convertDecToHex( num );
-        FILE* f = fopen( "result", "wb" );
-        fwrite( res.c_str( ), res.length( ), res.length( ), f );
-        fclose( f );
-        break;
-    }
-    case 'r':
-    {
-        FILE* f = fopen( "result", "rb" );
-        if ( f == NULL )
-        {
-            cout << "File not founded, close" << endl;
-            break;
-        }
-        fseek( f, 0, SEEK_END );
-        int size = ftell( f );
-        rewind( f );
-        char* dataC = new char[ size ];
-        fread( dataC, size, size, f );
-        fclose( f );
-        string data = dataC;
-        int res = libConvert::convertHexToDec( data );
-        delete[] dataC;
-        cout << res << endl;
-        break;
-    }
-    default:
-        cout << "Incorrect, close" << endl;
-        break;
-    }
+    cout << "Input number ";
+    string num = "";
+    cin >> num;
+
+    int res = libConvert::convertHexToDec( num );
+    string check = to_string( res );
+    int size = check.length( );  // size number
+    if ( size % 2 != 0 )
+        size += 1;
+    size = size / 2; // for correct write to file
+    FILE* f = fopen( "result", "wb" );
+
+    fwrite( "0x", 2, 1, f );
+    fwrite( &res, size, 1, f );
+    fclose( f );
 
     return 0;
 }
