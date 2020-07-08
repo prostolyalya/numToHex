@@ -2,8 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 find_package(GTest)
 if(NOT GTEST_FOUND)
-   message("ERROR: gtest not found")
-   return()
+   message(SEND_ERROR "ERROR: gtest not found")
 endif()
 
 set(BINARY ${CMAKE_PROJECT_NAME}_tst)

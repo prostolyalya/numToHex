@@ -6,10 +6,14 @@ project(numToHex LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-enable_testing()
+if(BUILD_TESTING)
+    enable_testing()
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+    message("Testing enabled")
+endif()
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/LibNumToHex)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/test)
+
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LibNumToHex/include)
 
