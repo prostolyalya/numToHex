@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.5)
 
 find_package(GTest)
+if(NOT GTEST_FOUND)
+   message("ERROR: gtest not found")
+   return()
+endif()
 
 set(BINARY ${CMAKE_PROJECT_NAME}_tst)
 file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.h *.cpp)
